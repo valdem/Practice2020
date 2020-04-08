@@ -1,0 +1,45 @@
+body {
+    background-color: #ECE9E9;
+}
+
+h1 {
+    text-align: center;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+#info {
+    text-align: center;
+    font-size: 110%;
+}
+
+#tests {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    width:100%;
+    background-color: white;
+    border-color: black;
+    border: 10px;
+    text-align: center;
+}
+
+#tests td, #tests th {
+    border: 1px solid #ddd;
+    padding: 4px;
+}
+
+.pass {
+    background-color: #A9EEA4;
+}
+
+.fail {
+    background-color: #DC1835;
+}
+
+.number {
+    padding: 50x;
+    width: 5%;
+}
+
+.name {
+    width: 10%;
+}
+
