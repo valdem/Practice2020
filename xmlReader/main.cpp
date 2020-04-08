@@ -3,9 +3,10 @@
 #include <fstream>
 #include <cstring>
 
-int main() {
+int main(int argc, char* argv[]) {
     tinyxml2::XMLDocument doc;
-    doc.LoadFile("/Users/vadim/Desktop/testPage/xmlReader/test_report_xml.xml");
+    std::cin>>argv[1];
+    doc.LoadFile(argv[1]);
     tinyxml2::XMLElement* miniPath = doc.FirstChildElement("Catch")->FirstChildElement( "Group" )->FirstChildElement("TestCase");
     tinyxml2::XMLElement* next = miniPath->NextSiblingElement("TestCase");
     std::string infoName = miniPath->Attribute("name");
@@ -15,7 +16,8 @@ int main() {
     std::cout<<infoFailLine;
     
     std::ofstream bigtest;
-    bigtest.open("/Users/vadim/Desktop/testPage/testPage/testPage.html");
+    std::cin>>argv[2];
+    bigtest.open(argv[2]);
     if (!bigtest.is_open()) {
         std::cout<<"error";
     }
@@ -80,3 +82,4 @@ int main() {
         std::cout<<"error";
     }
 }
+
