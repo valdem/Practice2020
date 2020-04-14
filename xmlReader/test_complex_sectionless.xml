@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Catch name="a.out">
+  <Group name="a.out">
+    <TestCase name="Complex" filename="Complex.cpp" line="90">
+        <Expression success="false" type="REQUIRE" filename="Complex.cpp" line="97">
+          <Original>
+            First + Second == wi
+          </Original>
+          <Expanded>
+            {?} == {?}
+          </Expanded>
+        </Expression>
+        <Expression success="true" type="REQUIRE" filename="Complex.cpp" line="102">
+          <Original>
+            First - Second == wi
+          </Original>
+          <Expanded>
+            {?} == {?}
+          </Expanded>
+        </Expression>
+        <Expression success="true" type="REQUIRE" filename="Complex.cpp" line="104">
+          <Original>
+            Second - First == wi
+          </Original>
+          <Expanded>
+            {?} == {?}
+          </Expanded>
+        </Expression>
+        <Expression success="true" type="REQUIRE" filename="Complex.cpp" line="109">
+          <Original>
+            First * Second == wi
+          </Original>
+          <Expanded>
+            {?} == {?}
+          </Expanded>
+        </Expression>
+        <Expression success="true" type="REQUIRE" filename="Complex.cpp" line="114">
+          <Original>
+            First / Second == wi
+          </Original>
+          <Expanded>
+            {?} == {?}
+          </Expanded>
+        </Expression>
+        <Expression success="true" type="REQUIRE" filename="Complex.cpp" line="116">
+          <Original>
+            Second / First == wi
+          </Original>
+          <Expanded>
+            {?} == {?}
+          </Expanded>
+        </Expression>
+      <OverallResult success="false"/>
+    </TestCase>
+    <TestCase name="Scenario: MOD AND ARG" filename="Complex.cpp" line="120">
+        <Expression success="true" type="REQUIRE" filename="Complex.cpp" line="127">
+          <Original>
+            dbl_eql(mod(&amp;v), 5 )
+          </Original>
+          <Expanded>
+            true
+          </Expanded>
+        </Expression>
+        <Expression success="true" type="REQUIRE" filename="Complex.cpp" line="128">
+          <Original>
+            dbl_eql(arg(&amp;v), 0.92729520797729492 )
+          </Original>
+          <Expanded>
+            true
+          </Expanded>
+        </Expression>
+            <Expression success="true" type="REQUIRE" filename="Complex.cpp" line="134">
+              <Original>
+                dbl_eql(mod(&amp;v), 6.7082037925720215)
+              </Original>
+              <Expanded>
+                true
+              </Expanded>
+            </Expression>
+            <Expression success="true" type="REQUIRE" filename="Complex.cpp" line="135">
+              <Original>
+                dbl_eql(arg(&amp;v), 1.1071487665176392)
+              </Original>
+              <Expanded>
+                true
+              </Expanded>
+            </Expression>
+      <OverallResult success="true"/>
+    </TestCase>
+    <OverallResults successes="9" failures="1" expectedFailures="0"/>
+  </Group>
+  <OverallResults successes="9" failures="1" expectedFailures="0"/>
+</Catch>
