@@ -4,60 +4,56 @@
 #include <cstring>
 #include "parseFunctions.h"
 
-void parse_testcase(tinyxml2::XMLElement* path, std::ofstream& bigtest) {
+void chooseParserFirst(tinyxml2::XMLElement* path, std::ofstream& bigtest) {
     if (path->FirstChildElement("TestCase")) {
         path = path->FirstChildElement("TestCase");
+        std::cout<<"1"<<std::endl;
         parse_testcase(path, bigtest);
     }
     else if (path->FirstChildElement("Expression")) {
         path = path->FirstChildElement("Expression");
+        std::cout<<"2"<<std::endl;
         parse_expression(path,bigtest);
     }
     else if (path->FirstChildElement("Section")) {
         path = path->FirstChildElement("Section");
+        std::cout<<"3"<<std::endl;
         parse_section(path, bigtest);
     }
     else {
+        std::cout<<"4"<<std::endl;
         yacheika(path, bigtest);
         i += 1;
     }
 }
 
-void parse_section(tinyxml2::XMLElement* path, std::ofstream& bigtest) {
-    if (path->FirstChildElement("TestCase")) {
-        path = path->FirstChildElement("TestCase");
+void chooseParserNext(tinyxml2::XMLElement* path, std::ofstream& bigtest) {
+    if (path->NextSiblingElement("TestCase")) {
+        path = path->NextSiblingElement("TestCase");
+        std::cout<<"5"<<std::endl;
         parse_testcase(path, bigtest);
     }
-    else if (path->FirstChildElement("Expression")) {
-        path = path->FirstChildElement("Expression");
-        parse_expression(path,bigtest);
+    else if (path->NextSiblingElement("Expression")) {
+        path = path->NextSiblingElement("Expression");
+        std::cout<<"6"<<std::endl;
+        parse_expression(path, bigtest);
     }
-    else if (path->FirstChildElement("Section")) {
-        path = path->FirstChildElement("Section");
+    else if (path->NextSiblingElement("Section")) {
+        path = path->NextSiblingElement("Section");
+        std::cout<<"7"<<std::endl;
         parse_section(path, bigtest);
-    }
-    else {
-        yacheika(path, bigtest);
-        i += 1;
     }
 }
+
+void parse_testcase(tinyxml2::XMLElement* path, std::ofstream& bigtest) {
+    chooseParserFirst(path, bigtest);
+}
+
+void parse_section(tinyxml2::XMLElement* path, std::ofstream& bigtest) {
+    chooseParserFirst(path, bigtest);
+}
 void parse_expression(tinyxml2::XMLElement* path, std::ofstream& bigtest) {
-   if (path->FirstChildElement("TestCase")) {
-        path = path->FirstChildElement("TestCase");
-        parse_testcase(path, bigtest);
-    }
-    else if (path->FirstChildElement("Expression")) {
-        path = path->FirstChildElement("Expression");
-        parse_expression(path,bigtest);
-    }
-    else if (path->FirstChildElement("Section")) {
-        path = path->FirstChildElement("Section");
-        parse_section(path, bigtest);
-    }
-    else {
-        yacheika(path, bigtest);
-        i += 1;
-    }
+   chooseParserFirst(path, bigtest);
 }
 
 void yacheika(tinyxml2::XMLElement* path, std::ofstream& bigtest) {
@@ -75,43 +71,30 @@ void yacheika(tinyxml2::XMLElement* path, std::ofstream& bigtest) {
     std::string infoFailLine = path->Attribute("line");
     bigtest<<"<td>"<< infoFailLine << "</td>" ;
     bigtest<<"</tr>";
-    if (path->NextSiblingElement("TestCase")) {
-        path = path->NextSiblingElement("TestCase");
-        parse_testcase(path, bigtest);
-    }
-    else if (path->NextSiblingElement("Expression")) {
-        path = path->NextSiblingElement("Expression");
-        parse_expression(path, bigtest);
-    }
-    else if (path->NextSiblingElement("Section")) {
-        path = path->NextSiblingElement("Section");
-        parse_section(path, bigtest);
-    }
+    chooseParserNext(path, bigtest);
     
 }
 
-int main(int argc, char* argv[]) {
-    if(argc<3){
-	return -1;
-    }
+int main() {
     tinyxml2::XMLDocument doc;
-    doc.LoadFile(argv[1]);
+    doc.LoadFile("/Users/vadim/Documents/GitHub/Practice2020/xmlReader/test_complex_sectionless.xml");
     tinyxml2::XMLElement* firstPath = doc.FirstChildElement("Catch")->FirstChildElement("Group");
     
 
     std::ofstream bigtest;
-    bigtest.open(argv[2]);
+    bigtest.open("/Users/vadim/Documents/GitHub/Practice2020/xmlReader/testPage.html");
     if (!bigtest.is_open()) {
         std::cout<<"error";
     }
     
-    std::ifstream header(argv[3]);
+    std::ifstream header("/Users/vadim/Documents/GitHub/Practice2020/xmlReader/header.html");
     std::string header_content;
     while (!header.eof()) {
         header>>header_content;
     }
     bigtest<<header_content;
     
+    bigtest<<"<body>";
     bigtest<<"<div id = " <<"page"<< ">";
     bigtest<<"<h1>"<<"</h1><br/>";
     bigtest<<"<div id = " <<"info"<< "> ";
@@ -127,33 +110,8 @@ int main(int argc, char* argv[]) {
         tinyxml2::XMLElement* path = firstPath;
         
         while (path) {
-            
-            if (firstPath->FirstChildElement("TestCase")) {
-                firstPath = firstPath->FirstChildElement("TestCase");
-                path = path->FirstChildElement("TestCase");
-                parse_testcase(path, bigtest);
-                break;
-            }
-            
-            else if (firstPath->FirstChildElement("Expression")) {
-                path = path->FirstChildElement("Expression");
-                firstPath = firstPath->FirstChildElement("Expression");
-                parse_expression(path, bigtest);
-                break;
-            }
-            
-            else if (firstPath->FirstChildElement("Section")) {
-                path = path->FirstChildElement("Section");
-                firstPath = firstPath->FirstChildElement("Section");
-                parse_section(path, bigtest);
-                break;
-            }
-            
-            else {
-                yacheika(path, bigtest);
-                break;
-            }
-            
+            firstPath = firstPath->FirstChildElement();
+            chooseParserFirst(path, bigtest);
         }
         
         tinyxml2::XMLNode* parent = path->Parent();
@@ -161,33 +119,28 @@ int main(int argc, char* argv[]) {
         while (parent) {
             
             if (parent->FirstChildElement()->NextSiblingElement()) {
-              
                 firstPath = parent->FirstChildElement();
                 
                 if (firstPath->NextSiblingElement("TestCase")) {
                     firstPath = firstPath->NextSiblingElement("TestCase");
                     break;
                 }
-                
-                if (firstPath->NextSiblingElement("Expression")) {
+                else if (firstPath->NextSiblingElement("Expression")) {
                     firstPath = firstPath->NextSiblingElement("Expression");
                     break;
                 }
-                
-                if (firstPath->NextSiblingElement("Section")) {
+                else if (firstPath->NextSiblingElement("Section")) {
                     firstPath = firstPath->NextSiblingElement("Section");
                     break;
                 }
-                
             }
             
             else {
                 parent = parent->Parent();
             }
-            
         }
-        
     }
+    
     bigtest<<"</tbody>";
     bigtest<<"</table>";
     bigtest<<"</div>";
