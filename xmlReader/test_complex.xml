@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Catch name="a.out">
+  <Group name="a.out">
+    <TestCase name="Complex" filename="Complex.cpp" line="90">
+      <Section name="+" filename="Complex.cpp" line="95">
+        <Expression success="false" type="REQUIRE" filename="Complex.cpp" line="97">
+          <Original>
+            First + Second == wi
+          </Original>
+          <Expanded>
+            {?} == {?}
+          </Expanded>
+        </Expression>
+        <OverallResults successes="0" failures="1" expectedFailures="0"/>
+      </Section>
+      <Section name="-" filename="Complex.cpp" line="100">
+        <Expression success="true" type="REQUIRE" filename="Complex.cpp" line="102">
+          <Original>
+            First - Second == wi
+          </Original>
+          <Expanded>
+            {?} == {?}
+          </Expanded>
+        </Expression>
+        <Expression success="true" type="REQUIRE" filename="Complex.cpp" line="104">
+          <Original>
+            Second - First == wi
+          </Original>
+          <Expanded>
+            {?} == {?}
+          </Expanded>
+        </Expression>
+        <OverallResults successes="2" failures="0" expectedFailures="0"/>
+      </Section>
+      <Section name="*" filename="Complex.cpp" line="107">
+        <Expression success="true" type="REQUIRE" filename="Complex.cpp" line="109">
+          <Original>
+            First * Second == wi
+          </Original>
+          <Expanded>
+            {?} == {?}
+          </Expanded>
+        </Expression>
+        <OverallResults successes="1" failures="0" expectedFailures="0"/>
+      </Section>
+      <Section name="/" filename="Complex.cpp" line="112">
+        <Expression success="true" type="REQUIRE" filename="Complex.cpp" line="114">
+          <Original>
+            First / Second == wi
+          </Original>
+          <Expanded>
+            {?} == {?}
+          </Expanded>
+        </Expression>
+        <Expression success="true" type="REQUIRE" filename="Complex.cpp" line="116">
+          <Original>
+            Second / First == wi
+          </Original>
+          <Expanded>
+            {?} == {?}
+          </Expanded>
+        </Expression>
+        <OverallResults successes="2" failures="0" expectedFailures="0"/>
+      </Section>
+      <OverallResult success="false"/>
+    </TestCase>
+    <TestCase name="Scenario: MOD AND ARG" filename="Complex.cpp" line="120">
+      <Section name="Given: COmplex number" filename="Complex.cpp" line="122">
+        <Expression success="true" type="REQUIRE" filename="Complex.cpp" line="127">
+          <Original>
+            dbl_eql(mod(&amp;v), 5 )
+          </Original>
+          <Expanded>
+            true
+          </Expanded>
+        </Expression>
+        <Expression success="true" type="REQUIRE" filename="Complex.cpp" line="128">
+          <Original>
+            dbl_eql(arg(&amp;v), 0.92729520797729492 )
+          </Original>
+          <Expanded>
+            true
+          </Expanded>
+        </Expression>
+        <Section name="When: Complex number changes" filename="Complex.cpp" line="130">
+          <Section name="Then: Mod and Arg changes" filename="Complex.cpp" line="133">
+            <Expression success="true" type="REQUIRE" filename="Complex.cpp" line="134">
+              <Original>
+                dbl_eql(mod(&amp;v), 6.7082037925720215)
+              </Original>
+              <Expanded>
+                true
+              </Expanded>
+            </Expression>
+            <Expression success="true" type="REQUIRE" filename="Complex.cpp" line="135">
+              <Original>
+                dbl_eql(arg(&amp;v), 1.1071487665176392)
+              </Original>
+              <Expanded>
+                true
+              </Expanded>
+            </Expression>
+            <OverallResults successes="2" failures="0" expectedFailures="0"/>
+          </Section>
+          <OverallResults successes="2" failures="0" expectedFailures="0"/>
+        </Section>
+        <OverallResults successes="4" failures="0" expectedFailures="0"/>
+      </Section>
+      <OverallResult success="true"/>
+    </TestCase>
+    <OverallResults successes="9" failures="1" expectedFailures="0"/>
+  </Group>
+  <OverallResults successes="9" failures="1" expectedFailures="0"/>
+</Catch>
