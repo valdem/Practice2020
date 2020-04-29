@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <cstring>
 #include "tinyxml2.h"
 
 void parse_testcase(tinyxml2::XMLElement* path, std::ofstream& bigtest);
@@ -12,4 +13,5 @@ tinyxml2::XMLElement* chooseParserFirst(tinyxml2::XMLElement* path, std::ofstrea
 tinyxml2::XMLElement* chooseParserNext(tinyxml2::XMLElement* path, std::ofstream& bigtest);
 void parentParse(tinyxml2::XMLNode* parent,tinyxml2::XMLElement* firstPath,tinyxml2::XMLElement* path, std::ofstream& bigtest);
 
-int i = 0;
+std::string fileTest;
+int i = 1;
