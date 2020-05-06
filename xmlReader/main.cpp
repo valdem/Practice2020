@@ -91,14 +91,22 @@ tinyxml2::XMLElement* yacheika(tinyxml2::XMLElement* path, std::ofstream& bigtes
         std::getline(lines, lines_content);
     }
     bigtest<<"<td>";
-    bigtest<<"<pre><code data-language = c>";
-    for (size_t i = 0; i<6; i++) {
+    bigtest<<"<pre align = left><code data-language = c>";
+    for (size_t i = failLine-2; i<failLine+3; i++) {
         std::getline(lines, lines_content);
-        bigtest<<lines_content<<std::endl;
+        bigtest<<i<<" "<<lines_content<<std::endl;
     }
-    bigtest<<"</code></pre>";
+    bigtest<<"</pre></code>";
     bigtest<<"</td>";
     lines.close();
+    
+    bigtest<<"<td>";
+    if (infoSuccess == "false") {
+        std::string infoOriginal = path->FirstChildElement("Original")->GetText();
+        std::string infoExpected = path->FirstChildElement("Original")->NextSiblingElement("Expanded")->GetText();
+        bigtest<<"Failed: "<<infoOriginal<<" with Expansion: "<<infoExpected;
+    }
+    bigtest<<"</td>";
     
     bigtest<<"</tr>";
     i++;
@@ -111,7 +119,6 @@ int main(int argc, char* argv[]) {
     if (argc<4) {
         return -1;
     }
-    
     tinyxml2::XMLDocument doc;
     doc.LoadFile(argv[1]);
     tinyxml2::XMLElement* firstPath = doc.FirstChildElement("Catch")->FirstChildElement("Group");
@@ -149,6 +156,7 @@ int main(int argc, char* argv[]) {
     bigtest<<"<td>Passing</td>";
     bigtest<<"<td>Line of fail</td>";
     bigtest<<"<td>Fail</td>";
+    bigtest<<"<td>Expected</td>";
     bigtest<<"</tr>";
     
     tinyxml2::XMLElement* path = firstPath;
@@ -166,14 +174,11 @@ int main(int argc, char* argv[]) {
             parent = parent->Parent();
         }
     }
-    
+
     bigtest<<"</tbody>";
     bigtest<<"</table>";
     bigtest<<"</div>";
     bigtest<<"</body>";
     bigtest<<"</html>";
     bigtest.close();
-    if (!bigtest.is_open()) {
-        std::cout<<"error";
-    }
 }

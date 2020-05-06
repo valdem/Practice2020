@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Catch name="a.out">
+  <Group name="a.out">
+    <TestCase name="Example" filename="Example.cpp" line="6">
+      <Expression success="false" type="CHECK" filename="Example.cpp" line="11">
+        <Original>
+          actualIntValue == expectedIntValue
+        </Original>
+        <Expanded>
+          1 == 10
+        </Expanded>
+      </Expression>
+      <Expression success="false" type="CHECK" filename="Example.cpp" line="12">
+        <Original>
+          expectedIntValue == actualIntValue
+        </Original>
+        <Expanded>
+          10 == 1
+        </Expanded>
+      </Expression>
+      <Expression success="false" type="CHECK" filename="Example.cpp" line="13">
+        <Original>
+          actualIntValue == 20
+        </Original>
+        <Expanded>
+          1 == 20
+        </Expanded>
+      </Expression>
+      <Expression success="false" type="CHECK" filename="Example.cpp" line="14">
+        <Original>
+          20 == actualIntValue
+        </Original>
+        <Expanded>
+          20 == 1
+        </Expanded>
+      </Expression>
+      <Expression success="false" type="CHECK" filename="Example.cpp" line="19">
+        <Original>
+          actualStrValue == expectedStrValue
+        </Original>
+        <Expanded>
+          "NOOOO I DONT WANT TO DIE"
+==
+"2020 will be a great year"
+        </Expanded>
+      </Expression>
+      <Expression success="false" type="CHECK" filename="Example.cpp" line="20">
+        <Original>
+          expectedStrValue == actualStrValue
+        </Original>
+        <Expanded>
+          "2020 will be a great year"
+==
+"NOOOO I DONT WANT TO DIE"
+        </Expanded>
+      </Expression>
+      <Expression success="false" type="CHECK" filename="Example.cpp" line="21">
+        <Original>
+          actualStrValue == "RIP AND TEAR"
+        </Original>
+        <Expanded>
+          "NOOOO I DONT WANT TO DIE"
+==
+"RIP AND TEAR"
+        </Expanded>
+      </Expression>
+      <Expression success="false" type="CHECK" filename="Example.cpp" line="22">
+        <Original>
+          "UNTIL IT IS DONE" == actualStrValue
+        </Original>
+        <Expanded>
+          "UNTIL IT IS DONE"
+==
+"NOOOO I DONT WANT TO DIE"
+        </Expanded>
+      </Expression>
+      <OverallResult success="false"/>
+    </TestCase>
+    <OverallResults successes="0" failures="8" expectedFailures="0"/>
+  </Group>
+  <OverallResults successes="0" failures="8" expectedFailures="0"/>
+</Catch>
