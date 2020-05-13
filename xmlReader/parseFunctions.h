@@ -15,3 +15,5 @@ void parentParse(tinyxml2::XMLNode* parent,tinyxml2::XMLElement* firstPath,tinyx
 
 std::string fileTest;
 int i = 1;
+int testForStudent;
+int passTests = 0;

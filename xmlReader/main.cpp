@@ -68,47 +68,58 @@ void parse_expression(tinyxml2::XMLElement* path, std::ofstream& bigtest) {
 }
 
 tinyxml2::XMLElement* yacheika(tinyxml2::XMLElement* path, std::ofstream& bigtest) {
-    bigtest<<"<tr>";
-    bigtest<<"<td class = " <<"number"<< ">"<< i ;
-    std::string infoFile = path->Attribute("filename");
-    bigtest<<"<td class = " <<"name"<<">" << infoFile << "</td>" ;
+    if (testForStudent >= i) {
+        bigtest<<"<tr>";
+        bigtest<<"<td class = " <<"number"<< ">"<< i ;
+        std::string infoFile = path->Attribute("filename");
+        bigtest<<"<td class = " <<"name"<<">" << infoFile << "</td>" ;
+        
+        std::string infoSuccess = path->Attribute("success");
+        if (infoSuccess == "true") {
+            bigtest<<"<td class = " <<"pass"<< ">" << infoSuccess <<" </td>";
+            passTests++;
+        }
+        else  {
+            bigtest<<"<td class = " <<"fail"<< ">" << infoSuccess <<" </td>";
+        }
+        
+        std::string infoFailLine = path->Attribute("line");
+        bigtest<<"<td>"<<infoFailLine<<"</td>";
+        int failLine = atoi(infoFailLine.c_str());
+        std::ifstream lines;
+        lines.open(fileTest);
+        std::string lines_content;
+        for (size_t i = 0; i<failLine-3; i++) {
+            std::getline(lines, lines_content);
+        }
+        bigtest<<"<td>";
+        bigtest<<"<pre align = left><code data-language = c>";
+        for (size_t i = failLine-2; i<failLine+3; i++) {
+            std::getline(lines, lines_content);
+            bigtest<<i<<lines_content<<std::endl;
+        }
+        bigtest<<"</pre></code>";
+        bigtest<<"</td>";
+        lines.close();
+        
+        bigtest<<"<td>";
+        if (infoSuccess == "false") {
+            std::string infoOriginal = path->FirstChildElement("Original")->GetText();
+            std::string infoExpected = path->FirstChildElement("Original")->NextSiblingElement("Expanded")->GetText();
+            bigtest<<"Failed: "<<infoOriginal<<" with Expansion: "<<infoExpected;
+        }
+        bigtest<<"</td>";
+        
+        bigtest<<"</tr>";
+    }
+    else {
+        std::string infoSuccess = path->Attribute("success");
+        if (infoSuccess == "true") {
+            passTests++;
+        }
+    }
     
-    std::string infoSuccess = path->Attribute("success");
-    if (infoSuccess == "true") {
-        bigtest<<"<td class = " <<"pass"<< ">" << infoSuccess <<" </td>";
-    }
-    else  {
-        bigtest<<"<td class = " <<"fail"<< ">" << infoSuccess <<" </td>";
-    }
     
-    std::string infoFailLine = path->Attribute("line");
-    bigtest<<"<td>"<<infoFailLine<<"</td>";
-    int failLine = atoi(infoFailLine.c_str());
-    std::ifstream lines;
-    lines.open(fileTest);
-    std::string lines_content;
-    for (size_t i = 0; i<failLine-3; i++) {
-        std::getline(lines, lines_content);
-    }
-    bigtest<<"<td>";
-    bigtest<<"<pre align = left><code data-language = c>";
-    for (size_t i = failLine-2; i<failLine+3; i++) {
-        std::getline(lines, lines_content);
-        bigtest<<i<<" "<<lines_content<<std::endl;
-    }
-    bigtest<<"</pre></code>";
-    bigtest<<"</td>";
-    lines.close();
-    
-    bigtest<<"<td>";
-    if (infoSuccess == "false") {
-        std::string infoOriginal = path->FirstChildElement("Original")->GetText();
-        std::string infoExpected = path->FirstChildElement("Original")->NextSiblingElement("Expanded")->GetText();
-        bigtest<<"Failed: "<<infoOriginal<<" with Expansion: "<<infoExpected;
-    }
-    bigtest<<"</td>";
-    
-    bigtest<<"</tr>";
     i++;
     path = chooseParserNext(path, bigtest);
 
@@ -116,7 +127,7 @@ tinyxml2::XMLElement* yacheika(tinyxml2::XMLElement* path, std::ofstream& bigtes
 }
 
 int main(int argc, char* argv[]) {
-    if (argc<4) {
+    if (argc<5) {
         return -1;
     }
     tinyxml2::XMLDocument doc;
@@ -140,15 +151,16 @@ int main(int argc, char* argv[]) {
     header.close();
         
     fileTest = argv[4];
+    testForStudent = atoi(argv[5]);
     
-    bigtest<<"<div id = " <<"page"<< ">";
+    bigtest<<"<div id = page>";
     bigtest<<"<h1>"<<"</h1><br/>";
-    bigtest<<"<div id = " <<"info"<< "> ";
+    bigtest<<"<div id = info> ";
     bigtest<<"<p><i>Фомин Вадим Евгеньевич<br/>";
     bigtest<<"группа КМБО-02-19<br/>";
     bigtest<<"4 марта 2020<i/></p><br/>";
     bigtest<<"</div>";
-    bigtest<<"<table id = " <<"tests"<< ">";
+    bigtest<<"<table id = tests>";
     bigtest<<"<tbody>";
     bigtest<<"<tr>";
     bigtest<<"<td class = number>№</td>";
@@ -174,6 +186,9 @@ int main(int argc, char* argv[]) {
             parent = parent->Parent();
         }
     }
+    
+    int allTests = i-1;
+    bigtest<<"<div align = center><i>Пройдено тестов: "<<passTests<<" из "<<allTests<<"</i></div><br/>";
 
     bigtest<<"</tbody>";
     bigtest<<"</table>";

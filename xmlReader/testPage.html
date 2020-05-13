@@ -1,81 +1,37 @@
-<!DOCTYPE HTML><html><head><meta charset = "utf-8"><title>Tests C++</title><link href = "styleTest.css" rel = "stylesheet" type = "text/css"/><script src = "rainbow-custom.min.js"></script><link href = "rainbow.css" rel = "stylesheet"/></head><body><div id = page><h1></h1><br/><div id = info> <p><i>Фомин Вадим Евгеньевич<br/>группа КМБО-02-19<br/>4 марта 2020<i/></p><br/></div><table id = tests><tbody><tr><td class = number>№</td><td class = name>Name</td><td>Passing</td><td>Line of fail</td><td>Fail</td><td>Expected</td></tr><tr><td class = number>1<td class = name>Example.cpp</td><td class = fail>false </td><td>11</td><td><pre align = left><code data-language = c>9 	int actualIntValue = 1;
-10 	
-11 	CHECK( actualIntValue == expectedIntValue );
-12 	CHECK( expectedIntValue == actualIntValue );
-13 	CHECK( actualIntValue == 20 );
+<!DOCTYPE HTML><html><head><meta charset = "utf-8"><title>Tests C++</title><link href = "styleTest.css" rel = "stylesheet" type = "text/css"/><script src = "rainbow-custom.min.js"></script><link href = "rainbow.css" rel = "stylesheet"/></head><body><div id = page><h1></h1><br/><div id = info> <p><i>Фомин Вадим Евгеньевич<br/>группа КМБО-02-19<br/>4 марта 2020<i/></p><br/></div><table id = tests><tbody><tr><td class = number>№</td><td class = name>Name</td><td>Passing</td><td>Line of fail</td><td>Fail</td><td>Expected</td></tr><tr><td class = number>1<td class = name>Example.cpp</td><td class = fail>false </td><td>11</td><td><pre align = left><code data-language = c>9	int actualIntValue = 1;
+10	
+11	CHECK( actualIntValue == expectedIntValue );
+12	CHECK( expectedIntValue == actualIntValue );
+13	CHECK( actualIntValue == 20 );
 </pre></code></td><td>Failed: 
           actualIntValue == expectedIntValue
          with Expansion: 
           1 == 10
-        </td></tr><tr><td class = number>2<td class = name>Example.cpp</td><td class = fail>false </td><td>12</td><td><pre align = left><code data-language = c>10 	
-11 	CHECK( actualIntValue == expectedIntValue );
-12 	CHECK( expectedIntValue == actualIntValue );
-13 	CHECK( actualIntValue == 20 );
-14 	CHECK( 20 == actualIntValue);
+        </td></tr><tr><td class = number>2<td class = name>Example.cpp</td><td class = fail>false </td><td>12</td><td><pre align = left><code data-language = c>10	
+11	CHECK( actualIntValue == expectedIntValue );
+12	CHECK( expectedIntValue == actualIntValue );
+13	CHECK( actualIntValue == 20 );
+14	CHECK( 20 == actualIntValue);
 </pre></code></td><td>Failed: 
           expectedIntValue == actualIntValue
          with Expansion: 
           10 == 1
-        </td></tr><tr><td class = number>3<td class = name>Example.cpp</td><td class = fail>false </td><td>13</td><td><pre align = left><code data-language = c>11 	CHECK( actualIntValue == expectedIntValue );
-12 	CHECK( expectedIntValue == actualIntValue );
-13 	CHECK( actualIntValue == 20 );
-14 	CHECK( 20 == actualIntValue);
-15 	
+        </td></tr><tr><td class = number>3<td class = name>Example.cpp</td><td class = fail>false </td><td>13</td><td><pre align = left><code data-language = c>11	CHECK( actualIntValue == expectedIntValue );
+12	CHECK( expectedIntValue == actualIntValue );
+13	CHECK( actualIntValue == 20 );
+14	CHECK( 20 == actualIntValue);
+15	
 </pre></code></td><td>Failed: 
           actualIntValue == 20
          with Expansion: 
           1 == 20
-        </td></tr><tr><td class = number>4<td class = name>Example.cpp</td><td class = fail>false </td><td>14</td><td><pre align = left><code data-language = c>12 	CHECK( expectedIntValue == actualIntValue );
-13 	CHECK( actualIntValue == 20 );
-14 	CHECK( 20 == actualIntValue);
-15 	
-16 	std::string expectedStrValue = "2020 will be a great year";
+        </td></tr><tr><td class = number>4<td class = name>Example.cpp</td><td class = fail>false </td><td>14</td><td><pre align = left><code data-language = c>12	CHECK( expectedIntValue == actualIntValue );
+13	CHECK( actualIntValue == 20 );
+14	CHECK( 20 == actualIntValue);
+15	
+16	std::string expectedStrValue = "2020 will be a great year";
 </pre></code></td><td>Failed: 
           20 == actualIntValue
          with Expansion: 
           20 == 1
-        </td></tr><tr><td class = number>5<td class = name>Example.cpp</td><td class = fail>false </td><td>19</td><td><pre align = left><code data-language = c>17 	std::string actualStrValue = "NOOOO I DONT WANT TO DIE";
-18 	
-19 	CHECK( actualStrValue == expectedStrValue );
-20 	CHECK( expectedStrValue == actualStrValue );
-21 	CHECK( actualStrValue == "RIP AND TEAR" );
-</pre></code></td><td>Failed: 
-          actualStrValue == expectedStrValue
-         with Expansion: 
-          "NOOOO I DONT WANT TO DIE"
-==
-"2020 will be a great year"
-        </td></tr><tr><td class = number>6<td class = name>Example.cpp</td><td class = fail>false </td><td>20</td><td><pre align = left><code data-language = c>18 	
-19 	CHECK( actualStrValue == expectedStrValue );
-20 	CHECK( expectedStrValue == actualStrValue );
-21 	CHECK( actualStrValue == "RIP AND TEAR" );
-22 	CHECK( "UNTIL IT IS DONE" == actualStrValue );
-</pre></code></td><td>Failed: 
-          expectedStrValue == actualStrValue
-         with Expansion: 
-          "2020 will be a great year"
-==
-"NOOOO I DONT WANT TO DIE"
-        </td></tr><tr><td class = number>7<td class = name>Example.cpp</td><td class = fail>false </td><td>21</td><td><pre align = left><code data-language = c>19 	CHECK( actualStrValue == expectedStrValue );
-20 	CHECK( expectedStrValue == actualStrValue );
-21 	CHECK( actualStrValue == "RIP AND TEAR" );
-22 	CHECK( "UNTIL IT IS DONE" == actualStrValue );
-23 }
-</pre></code></td><td>Failed: 
-          actualStrValue == "RIP AND TEAR"
-         with Expansion: 
-          "NOOOO I DONT WANT TO DIE"
-==
-"RIP AND TEAR"
-        </td></tr><tr><td class = number>8<td class = name>Example.cpp</td><td class = fail>false </td><td>22</td><td><pre align = left><code data-language = c>20 	CHECK( expectedStrValue == actualStrValue );
-21 	CHECK( actualStrValue == "RIP AND TEAR" );
-22 	CHECK( "UNTIL IT IS DONE" == actualStrValue );
-23 }
-24 
-</pre></code></td><td>Failed: 
-          "UNTIL IT IS DONE" == actualStrValue
-         with Expansion: 
-          "UNTIL IT IS DONE"
-==
-"NOOOO I DONT WANT TO DIE"
-        </td></tr></tbody></table></div></body></html>
+        </td></tr><div align = center><i>Пройдено тестов: 0 из 8</i></div><br/></tbody></table></div></body></html>
