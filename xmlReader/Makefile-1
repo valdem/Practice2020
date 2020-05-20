@@ -1,3 +1,0 @@
-all:
-	g++ tinyxml2.cpp main.cpp
-	./a.out test_expected_actual.xml testPage.html header.html Example.cpp 4

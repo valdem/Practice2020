@@ -1,0 +1,3 @@
+all:
+	g++ thirdparty/tinyxml2.cpp src/main.cpp
+	./a.out test/test_expected_actual.xml public/testPage.html public/header.html test/Example.cpp 4
