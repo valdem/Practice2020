@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Catch name="a.out">
+  <Group name="a.out">
+    <TestCase name="Test2" filename="Test2.cpp" line="9">
+      <Expression success="false" type="CHECK" filename="Test2.cpp" line="16">
+        <Original>
+          trueNumber == FalseNumber
+        </Original>
+        <Expanded>
+          21 == -21
+        </Expanded>
+      </Expression>
+      <Expression success="false" type="CHECK" filename="Test2.cpp" line="18">
+        <Original>
+          FalseNumber == trueNumber
+        </Original>
+        <Expanded>
+          -21 == 21
+        </Expanded>
+      </Expression>
+      <Expression success="false" type="CHECK" filename="Test2.cpp" line="19">
+        <Original>
+          FalseNumber == checkNumber
+        </Original>
+        <Expanded>
+          -21 == 21
+        </Expanded>
+      </Expression>
+      <Expression success="false" type="CHECK" filename="Test2.cpp" line="21">
+        <Original>
+          checkNumber == FalseNumber
+        </Original>
+        <Expanded>
+          21 == -21
+        </Expanded>
+      </Expression>
+      <Expression success="false" type="CHECK" filename="Test2.cpp" line="22">
+        <Original>
+          notNumber == numberToo
+        </Original>
+        <Expanded>
+          "twenty one" == "21"
+        </Expanded>
+      </Expression>
+      <OverallResult success="false"/>
+    </TestCase>
+    <OverallResults successes="2" failures="5" expectedFailures="0"/>
+  </Group>
+  <OverallResults successes="2" failures="5" expectedFailures="0"/>
+</Catch>

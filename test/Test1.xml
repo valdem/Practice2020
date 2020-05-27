@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Catch name="a.out">
+  <Group name="a.out">
+    <TestCase name="Test0" filename="Test1.cpp" line="8">
+      <Expression success="false" type="CHECK" filename="Test1.cpp" line="13">
+        <Original>
+          actualIntValue == expectedIntValue
+        </Original>
+        <Expanded>
+          13 == 10
+        </Expanded>
+      </Expression>
+      <Expression success="false" type="CHECK" filename="Test1.cpp" line="14">
+        <Original>
+          expectedIntValue == actualIntValue
+        </Original>
+        <Expanded>
+          10 == 13
+        </Expanded>
+      </Expression>
+      <Expression success="false" type="CHECK" filename="Test1.cpp" line="21">
+        <Original>
+          actualStrValue == expectedStrValue
+        </Original>
+        <Expanded>
+          "Check for testers 2"
+==
+"Check for testers"
+        </Expanded>
+      </Expression>
+      <Expression success="false" type="CHECK" filename="Test1.cpp" line="22">
+        <Original>
+          expectedStrValue == actualStrValue
+        </Original>
+        <Expanded>
+          "Check for testers"
+==
+"Check for testers 2"
+        </Expanded>
+      </Expression>
+      <Expression success="false" type="CHECK" filename="Test1.cpp" line="24">
+        <Original>
+          "UNTIL IT IS DONE" == actualStrValue
+        </Original>
+        <Expanded>
+          "UNTIL IT IS DONE" == "Check for testers 2"
+        </Expanded>
+      </Expression>
+      <OverallResult success="false"/>
+    </TestCase>
+    <TestCase name="Test1" filename="Test1.cpp" line="27">
+      <Expression success="false" type="CHECK" filename="Test1.cpp" line="39">
+        <Original>
+          array2[9] == 361
+        </Original>
+        <Expanded>
+          140732889800280 (0x7ffeede79e58)
+==
+361 (0x169)
+        </Expanded>
+      </Expression>
+      <OverallResult success="false"/>
+    </TestCase>
+    <OverallResults successes="5" failures="6" expectedFailures="0"/>
+  </Group>
+  <OverallResults successes="5" failures="6" expectedFailures="0"/>
+</Catch>
